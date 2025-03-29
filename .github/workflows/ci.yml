@@ -49,9 +49,19 @@ jobs:
       #         core.setFailed("Код-рев’ю не схвалено");
       #       }
 
-      - name: Install SonarQube Scanner with Chocolatey
+      - name: Install SonarQube Scanner manually
         run: |
-          choco install sonar-scanner -y
+          # Завантаження SonarQube Scanner
+          Invoke-WebRequest -Uri https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.6.2.2472-windows.zip -OutFile sonar-scanner.zip
+          
+          # Розпаковка архіву
+          Expand-Archive sonar-scanner.zip -DestinationPath $env:ProgramFiles
+          
+          # Додавання шляху до змінної середовища PATH
+          $env:PATH += ";$env:ProgramFiles\sonar-scanner-4.6.2.2472-windows\bin"
+          
+          # Перевірка доступності sonar-scanner
+          sonar-scanner --version
 
       - name: Count lines of code with Cloc
         run: |
