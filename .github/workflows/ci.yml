@@ -49,9 +49,9 @@ jobs:
       #         core.setFailed("Код-рев’ю не схвалено");
       #       }
 
-      - name: Install Cloc with Chocolatey
+      - name: Install SonarQube Scanner with Chocolatey
         run: |
-          choco install cloc -y
+          choco install sonar-scanner -y
 
       - name: Count lines of code with Cloc
         run: |
