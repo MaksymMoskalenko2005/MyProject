@@ -84,16 +84,19 @@ jobs:
       #   run: |
       #     sonar-scanner.bat
 
+      # Встановлення Black
+      - name: Install Black
+        run: |
+          pip install black
+
+      # Запуск Black
+      - name: Run Black
+        run: |
+          black --check .
+
       - name: Запуск flake8 через Reviewdog
         uses: reviewdog/action-flake8@v2
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           reporter: github-pr-review
           level: error
-
-      - name: Запуск Black через Reviewdog
-        uses: reviewdog/action-black@v1
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          reporter: github-pr-review
-          level: info
