@@ -63,6 +63,14 @@ jobs:
           # Перевірка доступності sonar-scanner
           sonar-scanner --version
 
+      - name: Install Cloc
+        run: |
+          choco install cloc -y
+
+      - name: Verify Cloc installation
+        run: |
+          cloc --version
+
       - name: Count lines of code with Cloc
         run: |
           cloc src\ > cloc-report.txt
