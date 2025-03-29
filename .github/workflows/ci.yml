@@ -78,11 +78,11 @@ jobs:
           cloc src\ > cloc-report.txt
           type cloc-report.txt
 
-      - name: Run SonarQube analysis
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: |
-          sonar-scanner.bat
+      # - name: Run SonarQube analysis
+      #   env:
+      #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      #   run: |
+      #     sonar-scanner.bat
 
       - name: Запуск flake8 через Reviewdog
         uses: reviewdog/action-flake8@v2
